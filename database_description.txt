@@ -1,0 +1,27 @@
+1) Pojazd (filracja typ szynowy/kołowy)
+2) Urządzenie (biletomat,komputer pokładowy)
+3) Komponent (terminal płatniczy, czytnik kodów QR, drukarka)
+4) status ok/warning/error
+
+1) Vehicles
+-id integer 4
+-type string
+-name string
+
+2) Devices
+-id  integer 4
+-vehicle_id integer 4
+-type string
+-name string
+
+3) Components
+-id integer 4
+-device_id integer 4
+-type string
+-name string
+
+4) Status
+-id integer 4
+-component_id integer 4
+-type string
+-description sring

@@ -1,0 +1,16 @@
+### TODO ###
+
+symfony doctrine:build-schema
+
+https://symfony.com/doc/current/the-fast-track/pl/8-doctrine.html#tworzenie-klas-encji
+
+symfony console make:entity Vehicles
+
+symfony console make:entity Devices
+
+symfony console make:entity Components
+
+symfony console make:entity Status
+
+
+composer require symfony/runtime
