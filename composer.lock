@@ -3874,7 +3874,5 @@
         "ext-ctype": "*",
         "ext-iconv": "*"
     },
-    "platform-dev": {
-        "php": "*"
-    }
+    "platform-dev": []
 }
