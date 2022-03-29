@@ -16,7 +16,6 @@ class ComponentsController extends AbstractController
     public function index(ManagerRegistry $doctrine): Response
     {
         $components = $doctrine->getRepository(components::class)->findAll();
-        
         if(count($components)>0){
             return $this->json(
             $components
@@ -35,15 +34,34 @@ class ComponentsController extends AbstractController
     public function show(ManagerRegistry $doctrine, int $id): Response
     {
         $components = $doctrine->getRepository(components::class)->find($id);
-
-        if (!$components) {
-            throw $this->createNotFoundException(
-                'No components found for id '.$id
-            );
+        if(count($components)>0){
+            return $this->json(
+            $components
+        );
+        } else {
+            return $this->json([
+            'error' => 'no data'
+        ]);
         }
-
-        return new Response('Check out this great components: '.$components->getName());
     }
+
+    /**
+     * @Route("/components/device_{id}", name="components_by_device_show")
+     */
+    public function showByDevice(ManagerRegistry $doctrine, int $id): Response
+    {
+        $components = $doctrine->getRepository(components::class)->findBy(array('device_id' => $id));
+        if(count($components)>0){
+            return $this->json(
+            $components
+        );
+        } else {
+            return $this->json([
+            'error' => 'no data'
+        ]);
+        }
+    }
+
     /**
      * @Route("/components/edit_{id}", name="components_edit")
      */
@@ -51,7 +69,6 @@ class ComponentsController extends AbstractController
     {
         $request = Request::createFromGlobals();
         $components = $doctrine->getRepository(components::class)->find($id);
-
         if (!$components) {
             throw $this->createNotFoundException(
                 'No components found for id '.$id
@@ -60,8 +77,6 @@ class ComponentsController extends AbstractController
             $components->setName($request->query->get('name'))->setType($request->query->get('type'))->setDeviceId($request->query->get('device_id'));
             return new Response('components: '.$components->getName(). ' updated');
         }
-
-        
     }
 
     /**
@@ -72,46 +87,6 @@ class ComponentsController extends AbstractController
         $request = Request::createFromGlobals();
         $components = new components();
         $components->setName($request->query->get('name'))->setType($request->query->get('type'))->setDeviceId($request->query->get('device_id'));
-        return $this->json([
-            'id' => $components->getId(),
-            'device_id' => $components->getDeviceId(),
-            'name' => $components->getName(),
-            'type' => $components->getType()
-        ]);
-    }
-    /**
-     * @Route("/components/generate", name="components_generate")
-     */
-    public function generate(ManagerRegistry $doctrine): Response
-    {
-        $entityManager = $doctrine->getManager();
-
-        $components = new components();
-        $components->setName('Trminal płatniczy')->setType('payment_terminal')->setDeviceId(1);
-
-        $entityManager->persist($components);
-        $entityManager->flush();
-
-        return $this->json([
-            'id' => $components->getId(),
-            'device_id' => $components->getDeviceId(),
-            'name' => $components->getName(),
-            'type' => $components->getType()
-        ]);
-    }
-    /**
-     * @Route("/components/generate2", name="components_generate2")
-     */
-    public function generate2(ManagerRegistry $doctrine): Response
-    {
-        $entityManager = $doctrine->getManager();
-
-        $components = new components();
-        $components->setName('Czytnik kodów QR')->setType('qr_code_reader')->setDeviceId(1);
-
-        $entityManager->persist($components);
-        $entityManager->flush();
-
         return $this->json([
             'id' => $components->getId(),
             'device_id' => $components->getDeviceId(),

@@ -78,42 +78,4 @@ class VehiclesController extends AbstractController
             'type' => $Vehicles->getType()
         ]);
     }
-    /**
-     * @Route("/vehicles/generate", name="vehicles_generate")
-     */
-    public function generate(ManagerRegistry $doctrine): Response
-    {
-        $entityManager = $doctrine->getManager();
-
-        $Vehicles = new Vehicles();
-        $Vehicles->setName('Autobus 307')->setType('bus');
-
-        $entityManager->persist($Vehicles);
-        $entityManager->flush();
-
-        return $this->json([
-            'id' => $Vehicles->getId(),
-            'name' => $Vehicles->getName(),
-            'type' => $Vehicles->getType()
-        ]);
-    }
-    /**
-     * @Route("/vehicles/generate2", name="vehicles_generate2")
-     */
-    public function generate2(ManagerRegistry $doctrine): Response
-    {
-        $entityManager = $doctrine->getManager();
-
-        $Vehicles = new Vehicles();
-        $Vehicles->setName('Autobus 308')->setType('bus');
-
-        $entityManager->persist($Vehicles);
-        $entityManager->flush();
-
-        return $this->json([
-            'id' => $Vehicles->getId(),
-            'name' => $Vehicles->getName(),
-            'type' => $Vehicles->getType()
-        ]);
-    }
 }
