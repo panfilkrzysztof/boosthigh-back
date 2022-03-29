@@ -107,6 +107,15 @@
     "psr/log": {
         "version": "1.1.4"
     },
+    "symfony/apache-pack": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "9d254a22efca7264203eea98b866f16f944b2f09"
+        }
+    },
     "symfony/cache": {
         "version": "v5.4.6"
     },
@@ -219,6 +228,12 @@
     "symfony/polyfill-php81": {
         "version": "v1.25.0"
     },
+    "symfony/property-access": {
+        "version": "v5.4.5"
+    },
+    "symfony/property-info": {
+        "version": "v5.4.3"
+    },
     "symfony/proxy-manager-bridge": {
         "version": "v5.4.6"
     },
@@ -237,6 +252,9 @@
     },
     "symfony/runtime": {
         "version": "v5.4.5"
+    },
+    "symfony/serializer": {
+        "version": "v5.4.6"
     },
     "symfony/service-contracts": {
         "version": "v2.5.0"
