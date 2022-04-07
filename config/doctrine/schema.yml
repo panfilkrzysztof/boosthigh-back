@@ -1,0 +1,63 @@
+options:
+  detect_relations: true
+
+Vehicles:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    type:
+      type: string(255)
+      notnull: true
+    name:
+      type: string(255)
+      notnull: true
+
+Devices:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    vehicles_id:
+      type: integer
+      notnull: true
+    type:
+      type: string(255)
+      notnull: true
+    name:
+      type: string(255)
+      notnull: true
+
+Components:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    devices_id:
+      type: integer
+      notnull: true
+    type:
+      type: string(255)
+      notnull: true
+    name:
+      type: string(255)
+      notnull: true
+
+Status:
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    components_id:
+      type: integer
+      notnull: true
+    type:
+      type: string(255)
+      notnull: true
+    description:
+      type: string(255)
+      notnull: true
